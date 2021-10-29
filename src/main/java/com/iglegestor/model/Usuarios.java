@@ -25,7 +25,7 @@ public class Usuarios implements Serializable{
 	private String estado;
     private Long fecha;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Rol rol;
 
 	public Usuarios() {

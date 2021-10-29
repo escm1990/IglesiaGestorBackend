@@ -2,10 +2,13 @@ package com.iglegestor.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class TipoEvento implements Serializable{
@@ -18,6 +21,9 @@ public class TipoEvento implements Serializable{
 	
 	private String descripcion;
 	private String estado;
+	
+	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Iglesia iglesia;
 	
 	public TipoEvento() {
 		super();

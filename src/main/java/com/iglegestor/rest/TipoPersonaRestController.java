@@ -41,5 +41,9 @@ public class TipoPersonaRestController {
 		repo.deleteById(id);
 	}
 	
+	@RequestMapping(value = "api/tipopersona/listar/iglesia/{id_iglesia}", method = RequestMethod.GET)
+	public List<TipoPersona> listarPorIglesia(@PathVariable("id_iglesia") int id_iglesia){
+		return repo.obtenerRegistrosPorIglesia(id_iglesia);
+	}
 	
 }
