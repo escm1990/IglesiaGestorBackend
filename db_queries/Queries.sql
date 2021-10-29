@@ -8,7 +8,7 @@ DROP TABLE public.movimiento CASCADE;
 DROP TABLE public.movimiento_detalle CASCADE;
 DROP TABLE public.rol CASCADE;
 DROP TABLE public.tipo_evento CASCADE;
-DROP TABLE public.tipo_movimiento CASCADE;
+DROP TABLE public.tipo_registro_movimiento CASCADE;
 DROP TABLE public.tipo_persona CASCADE;
 DROP TABLE public.cierre_detalle CASCADE;
 DROP TABLE public.usuarios CASCADE;
