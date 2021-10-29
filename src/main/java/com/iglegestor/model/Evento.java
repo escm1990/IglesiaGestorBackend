@@ -22,7 +22,7 @@ public class Evento implements Serializable{
 	private int id;
 	
 	private String descripcion;
-	private Long fechaEvento; 
+	private Long fecha; 
 	
 	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Iglesia iglesia;
@@ -37,10 +37,10 @@ public class Evento implements Serializable{
 		super();
 	}
 
-	public Evento(String descripcion, Long fechaEvento, Iglesia iglesia, TipoEvento tipoEvento) {
+	public Evento(String descripcion, Long fecha, Iglesia iglesia, TipoEvento tipoEvento) {
 		super();
 		this.descripcion = descripcion;
-		this.fechaEvento = fechaEvento;
+		this.fecha = fecha;
 		this.iglesia = iglesia;
 		this.tipoEvento = tipoEvento;
 	}
@@ -62,11 +62,11 @@ public class Evento implements Serializable{
 	}
 
 	public Long getFechaEvento() {
-		return fechaEvento;
+		return fecha;
 	}
 
-	public void setFechaEvento(Long fechaEvento) {
-		this.fechaEvento = fechaEvento;
+	public void setFechaEvento(Long fecha) {
+		this.fecha = fecha;
 	}
 
 	public Iglesia getIglesia() {
@@ -95,7 +95,7 @@ public class Evento implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", descripcion=" + descripcion + ", fechaEvento=" + fechaEvento + ", iglesia="
+		return "Evento [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", iglesia="
 				+ iglesia.getId() + ", tipoEvento=" + tipoEvento.getId() +"]";
 	}
 

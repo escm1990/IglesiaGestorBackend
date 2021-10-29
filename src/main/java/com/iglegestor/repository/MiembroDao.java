@@ -38,7 +38,7 @@ public interface MiembroDao extends JpaRepository<Miembro, Integer>{
 	 @Query("SELECT a FROM Miembro a WHERE a.fechaConversion>= :fechaInicio AND a.fechaConversion <= :fechaFinal")
 	List<Miembro> obtenerRegistrosPorFechaConversion(@Param("fechaInicio") Long fechaInicio, @Param("fechaFinal") Long fechaFinal);
 
-	//Listar registros de Miembro por filtro por tip persona
+	//Listar registros de Miembro por filtro por tipo persona
 	@Query("SELECT a FROM Miembro a WHERE a.tipoPersona.id = ?1")
 	List<Miembro> obtenerRegistrosPorTipoPersona(int id_tipo_persona);
 }

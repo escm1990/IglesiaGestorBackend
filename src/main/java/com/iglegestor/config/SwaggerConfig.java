@@ -30,7 +30,7 @@ public class SwaggerConfig {
 	
 	private ApiInfo getApiInfo() {
 		return new ApiInfo(
-				"Iglesia Gestoy API",
+				"Iglesia Gestor API",
 				"API del sistema de gestión de iglesia",
 				"1.0",
 				"TERMS URL",

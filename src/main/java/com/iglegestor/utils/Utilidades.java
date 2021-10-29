@@ -16,6 +16,15 @@ public class Utilidades {
 		}
 		return lista;
 	}
+	
+	// Obtener listado de estado civil
+		public static List<Sexo> listarSexo() {
+			List<Sexo> lista = Arrays.asList(Sexo.values());
+			for (int i = 0; i < lista.size(); i++) {
+				System.out.println(lista.get(i));
+			}
+			return lista;
+		}
 
 	// Obtener listado de estado civil
 	public static List<EstadoCivil> listarEstadoCivil() {

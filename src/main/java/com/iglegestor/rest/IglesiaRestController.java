@@ -11,32 +11,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.iglegestor.model.TipoEvento;
-import com.iglegestor.repository.TipoEventoDao;
+import com.iglegestor.model.Iglesia;
+import com.iglegestor.repository.IglesiaDao;
 
 @RestController
 @CrossOrigin(origins = "*")
-public class TipoEventoRestController {
+public class IglesiaRestController {
 
 	@Autowired
-	private TipoEventoDao repo;
+	private IglesiaDao repo;
 	
-	@GetMapping(value = "api/tipoevento/listar")
-	public List<TipoEvento> listar(){
+	@GetMapping(value = "api/iglesia/listar")
+	public List<Iglesia> listar(){
 		return repo.findAll();
 	}
 
-	@RequestMapping(value = "api/tipoevento/guardar", method = RequestMethod.POST)
-	public void insertar(@RequestBody TipoEvento per) {
+	@RequestMapping(value = "api/iglesia/guardar", method = RequestMethod.POST)
+	public void insertar(@RequestBody Iglesia per) {
 		repo.save(per);
 	}
 	
-	@RequestMapping(value = "api/tipoevento/modificar", method = RequestMethod.PUT)
-	public void modificar(@RequestBody TipoEvento per) {
+	@RequestMapping(value = "api/iglesia/modificar", method = RequestMethod.PUT)
+	public void modificar(@RequestBody Iglesia per) {
 		repo.save(per);
 	}
 	
-	@RequestMapping(value = "api/tipoevento/eliminar/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "api/iglesia/eliminar/{id}", method = RequestMethod.DELETE)
 	public void eliminar(@PathVariable("id") Integer id) {
 		repo.deleteById(id);
 	}
