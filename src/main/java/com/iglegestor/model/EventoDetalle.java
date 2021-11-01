@@ -2,7 +2,7 @@ package com.iglegestor.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class EventoDetalle implements Serializable{
@@ -21,22 +23,55 @@ public class EventoDetalle implements Serializable{
 	private int id;
     private String comentario;
 	
-	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JsonIgnore
+	@JoinColumn(name = "miembro_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Miembro.class, fetch = FetchType.EAGER)
     private Miembro miembro;
 	
-	@ManyToOne
-    @JoinColumn(name = "evento_id", nullable = false, updatable = false)
+    @Column(name = "miembro_id")
+    private int miembro_id;
+    
+	@JsonIgnore
+	@JoinColumn(name = "evento_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Evento.class, fetch = FetchType.EAGER)
     private Evento evento;
+	
+	@Column(name = "evento_id")
+    private int evento_id;
 
 	public EventoDetalle() {
 		super();
 	}
 
-	public EventoDetalle(String comentario, Miembro miembro, Evento evento) {
+	public EventoDetalle(String comentario, int miembro_id, int evento_id) {
 		super();
 		this.comentario = comentario;
-		this.miembro = miembro;
+		this.miembro_id = miembro_id;
+		this.evento_id = evento_id;
+	}
+
+	public int getMiembro_id() {
+		return miembro_id;
+	}
+
+	public void setMiembro_id(int miembro_id) {
+		this.miembro_id = miembro_id;
+	}
+
+	public Evento getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Evento evento) {
 		this.evento = evento;
+	}
+
+	public int getEvento_id() {
+		return evento_id;
+	}
+
+	public void setEvento_id(int evento_id) {
+		this.evento_id = evento_id;
 	}
 
 	public int getId() {
@@ -73,8 +108,8 @@ public class EventoDetalle implements Serializable{
 
 	@Override
 	public String toString() {
-		return "EventoDetalle [id=" + id + ", comentario=" + comentario + ", miembro=" + miembro.getId() + ", evento="
-				+ evento.getId() + "]";
+		return "EventoDetalle [id=" + id + ", comentario=" + comentario + ", miembro_id=" + miembro_id+ ", evento_id="
+				+ evento_id + "]";
 	}
 	
 }

@@ -2,7 +2,7 @@ package com.iglegestor.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class MovimientoDetalle implements Serializable{
@@ -24,29 +26,74 @@ public class MovimientoDetalle implements Serializable{
 	private String estado;
 	private double monto;
 	
-	@ManyToOne
-    @JoinColumn(name = "movimiento_id", nullable = false, updatable = false)
+	@JsonIgnore
+	@JoinColumn(name = "movimiento_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Movimiento.class, fetch = FetchType.EAGER)
     private Movimiento movimiento;
 	
-	@ManyToOne(optional = true, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Column(name = "movimiento_id")
+    private int movimiento_id;
+	
+	@JsonIgnore
+	@JoinColumn(name = "miembro_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Miembro.class, fetch = FetchType.EAGER)
     private Miembro miembro;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(name = "miembro_id")
+    private int miembro_id;
+	
+    @JsonIgnore
+	@JoinColumn(name = "tipo_registro_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = TipoRegistroMovimiento.class, fetch = FetchType.EAGER)
     private TipoRegistroMovimiento tipoRegistroMovimiento;
+	
+    @Column(name = "tipo_registro_id")
+    private int tipo_registro_id;;
 
 	public MovimientoDetalle() {
 		super();
 	}
 
-	public MovimientoDetalle(String estado, String comentario, double monto, Movimiento movimiento, Miembro miembro,
-			TipoRegistroMovimiento tipoRegistroMovimiento) {
+	public MovimientoDetalle(String estado, String comentario, double monto, int movimiento_id, int miembro_id, int tipo_registro_id) {
 		super();
 		this.estado = estado;
 		this.comentario = comentario;
 		this.monto = monto;
-		this.movimiento = movimiento;
-		this.miembro = miembro;
+		this.movimiento_id = movimiento_id;
+		this.miembro_id = miembro_id;
+		this.tipo_registro_id = tipo_registro_id;
+	}
+
+	public int getMovimiento_id() {
+		return movimiento_id;
+	}
+
+	public void setMovimiento_id(int movimiento_id) {
+		this.movimiento_id = movimiento_id;
+	}
+
+	public int getMiembro_id() {
+		return miembro_id;
+	}
+
+	public void setMiembro_id(int miembro_id) {
+		this.miembro_id = miembro_id;
+	}
+
+	public TipoRegistroMovimiento getTipoRegistroMovimiento() {
+		return tipoRegistroMovimiento;
+	}
+
+	public void setTipoRegistroMovimiento(TipoRegistroMovimiento tipoRegistroMovimiento) {
 		this.tipoRegistroMovimiento = tipoRegistroMovimiento;
+	}
+
+	public int getTipo_registro_id() {
+		return tipo_registro_id;
+	}
+
+	public void setTipo_registro_id(int tipo_registro_id) {
+		this.tipo_registro_id = tipo_registro_id;
 	}
 
 	public int getId() {
@@ -97,18 +144,10 @@ public class MovimientoDetalle implements Serializable{
 		this.miembro = miembro;
 	}
 
-	public TipoRegistroMovimiento getTipoMovimiento() {
-		return tipoRegistroMovimiento;
-	}
-
-	public void setTipoMovimiento(TipoRegistroMovimiento tipoRegistroMovimiento) {
-		this.tipoRegistroMovimiento = tipoRegistroMovimiento;
-	}
-
 	@Override
 	public String toString() {
 		return "MovimientoDetalle [id=" + id + ", estado=" + estado + ", comentario=" + comentario + ", monto=" + monto
-				+ ", movimiento_id=" + movimiento.getId() + ", miembro=" + miembro.getId() + ", tipoRegistroMovimiento=" + tipoRegistroMovimiento.getId()
+				+ ", movimiento_id=" + movimiento_id + ", miembro_id=" + miembro_id + ", tipo_registro_id=" + tipo_registro_id
 				+ "]";
 	}
 

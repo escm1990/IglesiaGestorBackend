@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Cierre implements Serializable{
@@ -26,23 +30,37 @@ public class Cierre implements Serializable{
 	private Long fecha;
 	private Long fechaEjecucion;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
     private Iglesia iglesia;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cierre")
+	@Column(name = "iglesia_id")
+    private int iglesia_id;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cierre_id")
     private List<CierreDetalle> detalleCierre;
 
 	public Cierre() {
 		super();
 	}
 
-	public Cierre(String descripcion, double total, Long fecha, Long fechaEjecucion, Iglesia iglesia) {
+	public Cierre(String descripcion, double total, Long fecha, Long fechaEjecucion, int iglesia_id) {
 		super();
 		this.descripcion = descripcion;
 		this.total = total;
 		this.fecha = fecha;
 		this.fechaEjecucion = fechaEjecucion;
-		this.iglesia =  iglesia;
+		this.iglesia_id =  iglesia_id;
+	}
+	
+	public int getIglesia_id() {
+		return iglesia_id;
+	}
+
+	public void setIglesia_id(int iglesia_id) {
+		this.iglesia_id = iglesia_id;
 	}
 
 	public Iglesia getIglesia() {
@@ -104,7 +122,7 @@ public class Cierre implements Serializable{
 	@Override
 	public String toString() {
 		return "Cierre [id=" + id + ", descripcion=" + descripcion + ", total=" + total + ", fecha=" + fecha
-				+ ", fechaEjecucion=" + fechaEjecucion + ", iglesia=" + iglesia.getId()+ "]";
+				+ ", fechaEjecucion=" + fechaEjecucion + ", iglesia_id=" + iglesia_id+ "]";
 	}
 
 	

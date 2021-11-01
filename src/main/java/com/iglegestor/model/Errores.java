@@ -2,13 +2,16 @@ package com.iglegestor.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Errores implements Serializable{
@@ -25,21 +28,34 @@ public class Errores implements Serializable{
 	private String usuario;
 	private Long fecha;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
     private Iglesia iglesia;
+	
+	@Column(name = "iglesia_id")
+    private int iglesia_id;
 	
 	public Errores() {
 		super();
 	}
 
-	public Errores(String clase, String metodo, String descripcion, String usuario, Long fecha, Iglesia iglesia) {
+	public Errores(String clase, String metodo, String descripcion, String usuario, Long fecha, int iglesia_id) {
 		super();
 		this.clase = clase;
 		this.metodo = metodo;
 		this.descripcion = descripcion;
 		this.usuario = usuario;
 		this.fecha = fecha;
-		this.iglesia = iglesia;
+		this.iglesia_id = iglesia_id;
+	}
+
+	public int getIglesia_id() {
+		return iglesia_id;
+	}
+
+	public void setIglesia_id(int iglesia_id) {
+		this.iglesia_id = iglesia_id;
 	}
 
 	public Iglesia getIglesia() {

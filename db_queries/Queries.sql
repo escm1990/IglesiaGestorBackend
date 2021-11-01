@@ -13,7 +13,6 @@ DROP TABLE public.tipo_persona CASCADE;
 DROP TABLE public.cierre_detalle CASCADE;
 DROP TABLE public.usuarios CASCADE;
 DROP TABLE public.errores CASCADE;
-drop sequence public.hibernate_sequence;
 
 /*
 insert into rol(id,descripcion, estado,fecha,usuario) values (1,'ADMINISTRADOR','A',current_date,user);

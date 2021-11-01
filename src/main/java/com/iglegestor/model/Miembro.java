@@ -2,13 +2,16 @@ package com.iglegestor.model;
 
 import java.io.Serializable;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Miembro implements Serializable{
@@ -33,11 +36,21 @@ public class Miembro implements Serializable{
 	private String estado;
 	private String foto;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
     private Iglesia iglesia;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Column(name = "iglesia_id")
+    private int iglesia_id;
+	
+	@JsonIgnore
+	@JoinColumn(name = "tipo_persona_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = TipoPersona.class, fetch = FetchType.EAGER)
     private TipoPersona tipoPersona;
+	
+	@Column(name = "tipo_persona_id")
+    private int tipo_persona_id;
 
 	public Miembro() {
 		super();
@@ -45,7 +58,7 @@ public class Miembro implements Serializable{
 
 	public Miembro(String nombre, String apellido, Long fechaNacimiento, String sexo, String estadoCivil,
 			String direccion, String telefonoFijo, String telefonoMovil, String correo, Long fechaConversion,
-			Long fechaBautismo, String estado, String foto, Iglesia iglesia, TipoPersona tipoPersona) {
+			Long fechaBautismo, String estado, String foto, int iglesia_id, int tipo_persona_id) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -60,8 +73,8 @@ public class Miembro implements Serializable{
 		this.fechaBautismo = fechaBautismo;
 		this.estado = estado;
 		this.foto = foto;
-		this.iglesia = iglesia;
-		this.tipoPersona = tipoPersona;
+		this.iglesia_id = iglesia_id;
+		this.tipo_persona_id = tipo_persona_id;
 	}
 
 	public int getId() {
@@ -192,13 +205,37 @@ public class Miembro implements Serializable{
 		this.tipoPersona = tipoPersona;
 	}
 
+	public Long getFechaConversion() {
+		return fechaConversion;
+	}
+
+	public void setFechaConversion(Long fechaConversion) {
+		this.fechaConversion = fechaConversion;
+	}
+
+	public int getIglesia_id() {
+		return iglesia_id;
+	}
+
+	public void setIglesia_id(int iglesia_id) {
+		this.iglesia_id = iglesia_id;
+	}
+
+	public int getTipo_persona_id() {
+		return tipo_persona_id;
+	}
+
+	public void setTipo_persona_id(int tipo_persona_id) {
+		this.tipo_persona_id = tipo_persona_id;
+	}
+
 	@Override
 	public String toString() {
 		return "Miembro [id=" + id + ", nombre=" + nombre + ", apellido=" + apellido + ", fechaNacimiento="
 				+ fechaNacimiento + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", direccion=" + direccion
 				+ ", telefonoFijo=" + telefonoFijo + ", telefonoMovil=" + telefonoMovil + ", correo=" + correo
 				+ ", fechaConversion=" + fechaConversion + ", fechaBautismo=" + fechaBautismo + ", estado=" + estado
-				+ ", foto=" + foto + ", iglesia=" + iglesia.getId() + ", tipoPersona=" + tipoPersona.getId() + "]";
+				+ ", foto=" + foto + ", iglesia_id=" + iglesia_id + ", tipo_persona_id=" + tipo_persona_id + "]";
 	}
 
 	

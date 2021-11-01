@@ -4,13 +4,17 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Evento implements Serializable{
@@ -24,25 +28,60 @@ public class Evento implements Serializable{
 	private String descripcion;
 	private Long fecha; 
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonIgnore
+	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
     private Iglesia iglesia;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@Column(name = "iglesia_id")
+    private int iglesia_id;
+	
+	@JsonIgnore
+	@JoinColumn(name = "tipo_evento_id", insertable = false, updatable = false)
+    @ManyToOne(targetEntity = TipoEvento.class, fetch = FetchType.EAGER)
     private TipoEvento tipoEvento;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "evento")
+	@Column(name = "tipo_evento_id")
+    private int tipo_evento_id;
+	
+	@JsonIgnore
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "evento_id")
      private List<EventoDetalle> detalleEvento;
 
 	public Evento() {
 		super();
 	}
 
-	public Evento(String descripcion, Long fecha, Iglesia iglesia, TipoEvento tipoEvento) {
+	public Evento(String descripcion, Long fecha, int iglesia_id, int tipo_evento_id) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
-		this.iglesia = iglesia;
-		this.tipoEvento = tipoEvento;
+		this.iglesia_id = iglesia_id;
+		this.tipo_evento_id = tipo_evento_id;
+	}
+
+	public Long getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Long fecha) {
+		this.fecha = fecha;
+	}
+
+	public int getIglesia_id() {
+		return iglesia_id;
+	}
+
+	public void setIglesia_id(int iglesia_id) {
+		this.iglesia_id = iglesia_id;
+	}
+
+	public int getTipo_evento_id() {
+		return tipo_evento_id;
+	}
+
+	public void setTipo_evento_id(int tipo_evento_id) {
+		this.tipo_evento_id = tipo_evento_id;
 	}
 
 	public int getId() {
@@ -95,8 +134,8 @@ public class Evento implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Evento [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", iglesia="
-				+ iglesia.getId() + ", tipoEvento=" + tipoEvento.getId() +"]";
+		return "Evento [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", iglesia_id="
+				+ iglesia_id + ", tipo_evento_id=" + tipo_evento_id +"]";
 	}
 
 	
