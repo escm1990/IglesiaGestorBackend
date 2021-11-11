@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.iglegestor.enums.Accion;
+import com.iglegestor.enums.EstadoCivil;
+import com.iglegestor.enums.EstadoRegistro;
+import com.iglegestor.enums.Sexo;
+
 public class Utilidades {
 
 	// Obtener listado de acciones
@@ -44,14 +49,19 @@ public class Utilidades {
 		return lista;
 	}
 
-	// Formatear fecha en milisegundos
-	public static Long fechaMilisegundos(String fecha, String formatoHora) throws ParseException {
+	// Formatear fecha Cadena de texto en milisegundos
+	public static Long fechaStringMilisegundos(String fecha, String formatoHora) throws ParseException {
 		String myDate = formatearFechaParametro(fecha) + formatoHora;
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 		Date date = sdf.parse(myDate);
 		Long millis = date.getTime();
 		return millis;
 	}
+	
+	// Formatear fecha en milisegundos
+		public static Long fechaMilisegundos(Date fecha) throws ParseException {
+			return fecha.getTime();
+		}
 
 	// Formatear fecha en dd/MM/yyyy (Espera un valor en formato ddMMyyyy)
 	public static String formatearFechaParametro(String fecha) {

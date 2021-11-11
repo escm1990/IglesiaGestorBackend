@@ -1,0 +1,48 @@
+Crear un usuario Administrador
+
+{
+    "usuario": "admin",
+    "password": "infos",
+    "correo": "correo@gmail.com",
+    "fecha" : 1636524000000,
+    "roles" : ["admin"]
+}
+
+Crear un usuario Consulta
+
+{
+    "usuario": "visor",
+    "password": "infos",
+    "correo": "algo@gmail.com",
+    "fecha" : 1636524000000,
+    "roles" : ["consulta"]
+}
+
+Crear un usuario normal (Usuario)
+
+{
+    "usuario": "user",
+    "password": "infos",
+    "correo": "algo@gmail.com",
+    "fecha" : 1636524000000
+}
+
+Hacer Login
+
+{
+    "usuario": "root",
+    "password": "infos"
+}
+
+guardar iglesia
+
+{
+    "nombre": "Iglesia MMM Santa Ana",
+    "direccion": "CALLE PONIENTE JOSE MARIANO MÉNDEZ Y FINAL 22 AVENIDA SUR, CASA # 22",
+    "pais": "EL SALVADOR",
+    "correo": "mmmsantaanapastor@gmail.com",
+    "telefono": "+50375810771",
+    "logo": "https://scontent.fsal2-1.fna.fbcdn.net/v/t1.6435-9/121532379_101275435099573_3882368836618544146_n.jpg?_nc_cat=107&ccb=1-5&_nc_sid=09cbfe&_nc_ohc=9KeNcdDEQMUAX8GTxZU&_nc_ht=scontent.fsal2-1.fna&oh=8edebba3d376663f11d6f43dc6ad69fa&oe=61B08CB3",
+    "estado": "ACTIVO",
+    "fechaFundacion": 1636524000000
+}
