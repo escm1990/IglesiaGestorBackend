@@ -3,6 +3,7 @@ package com.iglegestor.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,16 +27,19 @@ public class TipoEventoRestController {
 		return repo.findAll();
 	}
 
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "api/tipoevento/guardar", method = RequestMethod.POST)
 	public void insertar(@RequestBody TipoEvento per) {
 		repo.save(per);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "api/tipoevento/modificar", method = RequestMethod.PUT)
 	public void modificar(@RequestBody TipoEvento per) {
 		repo.save(per);
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "api/tipoevento/eliminar/{id}", method = RequestMethod.DELETE)
 	public void eliminar(@PathVariable("id") Integer id) {
 		repo.deleteById(id);

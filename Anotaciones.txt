@@ -46,3 +46,28 @@ guardar iglesia
     "estado": "ACTIVO",
     "fechaFundacion": 1636524000000
 }
+
+URL SERVICIOS
+
+GENERAR TOKEN
+
+http://localhost:9090/auth/login
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
