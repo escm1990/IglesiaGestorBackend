@@ -1,10 +1,14 @@
 package com.iglegestor.service;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Service;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.iglegestor.utils.Constantes;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -18,7 +22,8 @@ public class FileServiceImplementation implements FileService{
 
 	//Nombre de la carpeta donde vamos a almacenar los archivos
     //Se crea a nivel de raiz la carpeta
-    private final Path root = Paths.get("uploads");
+
+    private final Path root = Paths.get(Constantes.CarpetaLogos);
 
     @Override
     public void init() {

@@ -54,7 +54,7 @@ GENERAR TOKEN
 http://localhost:9090/auth/login
 
 
-
+http://localhost:9090/api/upload/
 
 
 
