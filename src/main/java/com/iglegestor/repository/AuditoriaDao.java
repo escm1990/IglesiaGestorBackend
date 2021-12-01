@@ -27,7 +27,7 @@ public interface AuditoriaDao extends JpaRepository<Auditoria, Integer>{
 	List<Auditoria> obtenerRegistrosPorFecha(@Param("fechaInicio") Long fechaInicio, @Param("fechaFinal") Long fechaFinal);
 	 
 	//Listar registros de Evento por filtro por usuario
-	@Query("SELECT a FROM Auditoria a WHERE a.iglesia.id = ?1")
+	@Query("SELECT a FROM Auditoria a WHERE a.iglesia_id = ?1")
 	List<Auditoria> obtenerRegistrosPorIglesia(int id_iglesia);
 
 }

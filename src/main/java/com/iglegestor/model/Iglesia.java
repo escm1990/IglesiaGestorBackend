@@ -24,13 +24,14 @@ public class Iglesia implements Serializable{
 	private String logo;
 	private String estado;
     private Long fechaFundacion;
+    private String ultimoUsuario;
 	
 	public Iglesia() {
 		super();
 	}
 
 	public Iglesia(String nombre, String direccion, String pais, String correo, String telefono, String logo,
-			String estado, Long fechaFundacion) {
+			String estado, Long fechaFundacion, String ultimoUsuario) {
 		super();
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -40,6 +41,15 @@ public class Iglesia implements Serializable{
 		this.logo = logo;
 		this.estado = estado;
 		this.fechaFundacion = fechaFundacion;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public int getId() {
@@ -118,7 +128,7 @@ public class Iglesia implements Serializable{
 	public String toString() {
 		return "Iglesia [id=" + id + ", nombre=" + nombre + ", direccion=" + direccion + ", pais=" + pais + ", correo="
 				+ correo + ", telefono=" + telefono + ", logo=" + logo + ", estado=" + estado + ", fechaFundacion="
-				+ fechaFundacion + "]";
+				+ fechaFundacion + ", ultimoUsuario="+ ultimoUsuario+ "]";
 	}
 	
 }

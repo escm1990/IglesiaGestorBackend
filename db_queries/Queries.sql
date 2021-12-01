@@ -21,8 +21,19 @@ select * from usuarios u
 
 select * from usuario_rol ur order by 1, 2
 
-select * from iglesia i
+select * from iglesia i;
 
+select * from auditoria a; 
+
+select * from errores e; 
+
+
+select * from rol;
+select * from usuarios;
+select * from usuario_rol ;
+
+insert into auditoria (accion, fecha, iglesia_id, llave_registro, registro, tabla, usuario)
+values('PRUEBA 2',111111111111,2,2,'PRUEBA 2','NUNGUNA 2','YO 2')
 
 
 /*
@@ -41,4 +52,26 @@ select * from rol;
 select u.usuario, r.descripcion from usuarios u inner join rol r on u.rol_id = r.id ;
 */
 
-select * from auditoria 
+
+INSERT INTO public.rol (id, nombre) VALUES(1, 'ROLE_ADMIN');
+INSERT INTO public.rol (id, nombre) VALUES(2, 'ROLE_USER');
+INSERT INTO public.rol (id, nombre) VALUES(3, 'ROLE_CONSULTA');
+
+INSERT INTO public.usuarios (id, correo, estado, fecha, "password", usuario)
+VALUES(1, 'escm.1990@gmail.com', 'ACTIVO', 1636560482937, '$2a$10$qX.mevR2hlsXHOSTU9qTteyqvuDE5.uo0WnzcbbUQh/Lc0SadfcTu', 'root');
+INSERT INTO public.usuarios (id, correo, estado, fecha, "password", usuario)
+VALUES(2, 'escm.backup@gmail.com', 'ACTIVO', 1636560537110, '$2a$10$qX.mevR2hlsXHOSTU9qTteyqvuDE5.uo0WnzcbbUQh/Lc0SadfcTu', 'user');
+INSERT INTO public.usuarios (id, correo, estado, fecha, "password", usuario)
+VALUES(3, 'noreply.buenasnuevas@gmail.com', 'ACTIVO', 1636560844422, '$2a$10$8gsWuX6pX5bLEwenJdn1YeYUGb.G1DKc5ihp07XnPSFZe9ShX5vum', 'visor');
+INSERT INTO public.usuarios (id, correo, estado, fecha, "password", usuario)
+VALUES(4, 'juanito@algo.com', 'ACTIVO', 1637095012359, '$2a$10$LuRhSL.4kEs7cbohy4UeCOtG.rqWGahfUnwWUOIYRo.RQmY/GeV0.', 'juanito');
+
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(1, 2);
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(1, 1);
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(2, 2);
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(3, 2);
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(3, 3);
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(4, 2);
+INSERT INTO public.usuario_rol (usuario_id, rol_id) VALUES(4, 1);
+
+

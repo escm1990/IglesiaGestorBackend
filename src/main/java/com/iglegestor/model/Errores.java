@@ -28,12 +28,12 @@ public class Errores implements Serializable{
 	private String usuario;
 	private Long fecha;
 	
-	@JsonIgnore
+	/* @JsonIgnore
 	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
     @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
     private Iglesia iglesia;
 	
-	@Column(name = "iglesia_id")
+	@Column(name = "iglesia_id") */
     private int iglesia_id;
 	
 	public Errores() {
@@ -58,14 +58,14 @@ public class Errores implements Serializable{
 		this.iglesia_id = iglesia_id;
 	}
 
-	public Iglesia getIglesia() {
+	/*public Iglesia getIglesia() {
 		return iglesia;
 	}
 
 	public void setIglesia(Iglesia iglesia) {
 		this.iglesia = iglesia;
 	}
-
+*/
 	public int getId() {
 		return id;
 	}

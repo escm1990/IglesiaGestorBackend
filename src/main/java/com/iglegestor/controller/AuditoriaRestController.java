@@ -4,6 +4,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,7 @@ public class AuditoriaRestController {
 	
 	@GetMapping(value = "api/auditoria/listar")
 	public List<Auditoria> listar(){
-		return repo.findAll();
+		return repo.findAll(Sort.by(Sort.Direction.DESC, "id"));
 	}
 
 	@RequestMapping(value = "api/auditoria/guardar", method = RequestMethod.POST)

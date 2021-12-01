@@ -19,6 +19,6 @@ public interface ErroresDao extends JpaRepository<Errores, Integer>{
 	List<Errores> obtenerRegistrosPorFecha(@Param("fechaInicio") Long fechaInicio, @Param("fechaFinal") Long fechaFinal);
 	 
 	//Listar registros de Evento por filtro por usuario
-	@Query("SELECT a FROM Errores a WHERE a.iglesia.id = ?1")
+	@Query("SELECT a FROM Errores a WHERE a.iglesia_id = ?1")
 	List<Errores> obtenerRegistrosPorIglesia(int id_iglesia);
 }

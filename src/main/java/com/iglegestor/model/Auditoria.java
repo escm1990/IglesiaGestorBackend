@@ -22,16 +22,9 @@ public class Auditoria implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@JsonIgnore
-	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
-    @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
-    private Iglesia iglesia;
-	
-	@Column(name = "iglesia_id")
     private int iglesia_id;
 	
 	private String tabla;
-	private int llaveRegistro;
 	private String accion;
 	private String usuario;
 	private Long fecha;
@@ -41,10 +34,9 @@ public class Auditoria implements Serializable{
 		super();
 	}
 	
-	public Auditoria(String tabla, int llaveRegistro, String accion, String usuario, Long fecha, String registro, int iglesia_id) {
+	public Auditoria(String tabla, String accion, String usuario, Long fecha, String registro, int iglesia_id) {
 		super();
 		this.tabla = tabla;
-		this.llaveRegistro = llaveRegistro;
 		this.accion = accion;
 		this.usuario = usuario;
 		this.fecha = fecha;
@@ -60,30 +52,14 @@ public class Auditoria implements Serializable{
 		this.iglesia_id = iglesia_id;
 	}
 
-	public Iglesia getIglesia() {
+	/*public Iglesia getIglesia() {
 		return iglesia;
 	}
 
 	public void setIglesia(Iglesia iglesia) {
 		this.iglesia = iglesia;
 	}
-
-	public int getLlaveRegistro() {
-		return llaveRegistro;
-	}
-
-	public void setLlaveRegistro(int llaveRegistro) {
-		this.llaveRegistro = llaveRegistro;
-	}
-
-	public int getLlaveTabla() {
-		return llaveRegistro;
-	}
-
-	public void setLlaveTabla(int llaveTabla) {
-		this.llaveRegistro = llaveTabla;
-	}
-
+*/
 	public int getId() {
 		return id;
 	}
