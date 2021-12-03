@@ -55,22 +55,22 @@ public class Usuarios implements Serializable{
 	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
     @ManyToOne(targetEntity = Iglesia.class, fetch = FetchType.EAGER)
     private Iglesia iglesia;
-	
+*/	
 	@Column(name = "iglesia_id")
     private int iglesia_id;
-*/
+
 	public Usuarios() {
 		super();
 	}
 
-	public Usuarios(@NotNull String usuario, @NotNull String password, @NotNull String correo, @NotNull String estado, @NotNull Long fecha) { //, int iglesia_id) {
+	public Usuarios(@NotNull String usuario, @NotNull String password, @NotNull String correo, @NotNull String estado, @NotNull Long fecha, int iglesia_id) {
 		super();
 		this.usuario = usuario;
 		this.password = password;
 		this.correo = correo;
 		this.estado = estado;
 		this.fecha = fecha;
-		//this.iglesia_id = iglesia_id;
+		this.iglesia_id = iglesia_id;
 	}
 
 	public Set<Rol> getRoles() {
@@ -80,15 +80,7 @@ public class Usuarios implements Serializable{
 	public void setRoles(Set<Rol> roles) {
 		this.roles = roles;
 	}
-
-	/*public Iglesia getIglesia() {
-		return iglesia;
-	}
-
-	public void setIglesia(Iglesia iglesia) {
-		this.iglesia = iglesia;
-	}
-
+	
 	public int getIglesia_id() {
 		return iglesia_id;
 	}
@@ -96,15 +88,7 @@ public class Usuarios implements Serializable{
 	public void setIglesia_id(int iglesia_id) {
 		this.iglesia_id = iglesia_id;
 	}
-
-	public int getRol_id() {
-		return rol_id;
-	}
-
-	public void setRol_id(int rol_id) {
-		this.rol_id = rol_id;
-	}
-*/
+	
 	public int getId() {
 		return id;
 	}
@@ -160,11 +144,28 @@ public class Usuarios implements Serializable{
 	public void setRol(Roles rol) {
 		this.rol = rol;
 	}
-*/	
+ 
+ public Iglesia getIglesia() {
+	return iglesia;
+}
+
+public void setIglesia(Iglesia iglesia) {
+	this.iglesia = iglesia;
+}
+
+
+public int getRol_id() {
+	return rol_id;
+}
+
+public void setRol_id(int rol_id) {
+	this.rol_id = rol_id;
+}
+*/
 	@Override
 	public String toString() {
 		return "Usuarios [id=" + id + ", usuario=" + usuario + ", password=" + password + ", correo=" + correo
-				+ ", estado=" + estado + ", fecha=" + fecha + ", rol=" + roles.stream().toString()
+				+ ", estado=" + estado + ", fecha=" + fecha + ", iglesia_id=" + iglesia_id + ", rol=" + roles.stream().toString()
 				+"]";
 	}
 	

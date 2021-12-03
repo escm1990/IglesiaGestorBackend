@@ -23,12 +23,23 @@ select * from usuario_rol ur order by 1, 2
 
 select * from iglesia i;
 
+update iglesia set nombre = 'XYZ' where nombre = 'Prueba7777'
+
 select * from auditoria a; 
 
 select * from errores e; 
 
+select * from tipo_evento te 
+
+select * from evento e 
 
 select * from rol;
+
+update usuarios set iglesia_id = 1 where iglesia_id is null;
+
+update tipo_evento set iglesia_id = 3 where id = 2;
+
+
 select * from usuarios;
 select * from usuario_rol ;
 

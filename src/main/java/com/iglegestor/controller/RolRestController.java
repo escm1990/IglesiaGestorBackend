@@ -28,7 +28,7 @@ public class RolRestController {
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "api/Roles/guardar", method = RequestMethod.POST)
+	@RequestMapping(value = "api/rol/guardar", method = RequestMethod.POST)
 	public void insertar(@RequestBody Rol per) {
 		repo.save(per);
 	}

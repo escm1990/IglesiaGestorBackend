@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -33,15 +34,26 @@ public class TipoEvento implements Serializable{
 	@Column(name = "iglesia_id")
     private int iglesia_id;
 	
+	private String ultimoUsuario;
+	
 	public TipoEvento() {
 		super();
 	}
 
-	public TipoEvento(String descripcion, String estado, int iglesia_id) {
+	public TipoEvento(String descripcion, String estado, int iglesia_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.iglesia_id = iglesia_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public Iglesia getIglesia() {

@@ -50,13 +50,13 @@ public class IglesiaRestController {
 	Errores er;
 	
 	private Utilidades utils;
-	
+
 	@GetMapping(value = "/listar")
 	public List<Iglesia> listar(){
 		return repo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	
-	 @GetMapping("/detalle/{id}")
+	@GetMapping("/detalle/{id}")
     public ResponseEntity<Iglesia> getUserByID(@PathVariable int id) throws NotFoundException {
         //Es un Optional<T>
         Optional<Iglesia> u = repo.findById(id);
@@ -66,7 +66,7 @@ public class IglesiaRestController {
         }
         //Si no, lanzamos un error
         else{
-            throw new NotFoundException("Not found User by id: " + id);
+            throw new NotFoundException("Not found Iglesia by id: " + id);
         }
    }
 
