@@ -48,16 +48,27 @@ public class Evento implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "evento_id")
      private List<EventoDetalle> detalleEvento;
 
+	private String ultimoUsuario;
+	
 	public Evento() {
 		super();
 	}
 
-	public Evento(String descripcion, Long fecha, int iglesia_id, int tipo_evento_id) {
+	public Evento(String descripcion, Long fecha, int iglesia_id, int tipo_evento_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.iglesia_id = iglesia_id;
 		this.tipo_evento_id = tipo_evento_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public Long getFecha() {
@@ -135,7 +146,7 @@ public class Evento implements Serializable{
 	@Override
 	public String toString() {
 		return "Evento [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", iglesia_id="
-				+ iglesia_id + ", tipo_evento_id=" + tipo_evento_id +"]";
+				+ iglesia_id + ", tipo_evento_id=" + tipo_evento_id + ", ultimoUsuario="+ultimoUsuario+"]";
 	}
 
 	

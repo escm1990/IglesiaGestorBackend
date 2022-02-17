@@ -35,6 +35,7 @@ public class Miembro implements Serializable{
 	private Long fechaBautismo;
 	private String estado;
 	private String foto;
+	private String ultimoUsuario;
 	
 	@JsonIgnore
 	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
@@ -58,7 +59,7 @@ public class Miembro implements Serializable{
 
 	public Miembro(String nombre, String apellido, Long fechaNacimiento, String sexo, String estadoCivil,
 			String direccion, String telefonoFijo, String telefonoMovil, String correo, Long fechaConversion,
-			Long fechaBautismo, String estado, String foto, int iglesia_id, int tipo_persona_id) {
+			Long fechaBautismo, String estado, String foto, int iglesia_id, int tipo_persona_id, String ultimoUsuario) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -75,6 +76,15 @@ public class Miembro implements Serializable{
 		this.foto = foto;
 		this.iglesia_id = iglesia_id;
 		this.tipo_persona_id = tipo_persona_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public int getId() {
@@ -235,7 +245,8 @@ public class Miembro implements Serializable{
 				+ fechaNacimiento + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", direccion=" + direccion
 				+ ", telefonoFijo=" + telefonoFijo + ", telefonoMovil=" + telefonoMovil + ", correo=" + correo
 				+ ", fechaConversion=" + fechaConversion + ", fechaBautismo=" + fechaBautismo + ", estado=" + estado
-				+ ", foto=" + foto + ", iglesia_id=" + iglesia_id + ", tipo_persona_id=" + tipo_persona_id + "]";
+				+ ", foto=" + foto + ", iglesia_id=" + iglesia_id + ", tipo_persona_id=" + tipo_persona_id 
+				+  ", ultimoUsuario=" + ultimoUsuario + "]";
 	}
 
 	

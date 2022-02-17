@@ -29,6 +29,7 @@ public class Cierre implements Serializable{
 	private double total;
 	private Long fecha;
 	private Long fechaEjecucion;
+	private String ultimoUsuario;
 	
 	@JsonIgnore
 	@JoinColumn(name = "iglesia_id", insertable = false, updatable = false)
@@ -46,15 +47,24 @@ public class Cierre implements Serializable{
 		super();
 	}
 
-	public Cierre(String descripcion, double total, Long fecha, Long fechaEjecucion, int iglesia_id) {
+	public Cierre(String descripcion, double total, Long fecha, Long fechaEjecucion, int iglesia_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.total = total;
 		this.fecha = fecha;
 		this.fechaEjecucion = fechaEjecucion;
 		this.iglesia_id =  iglesia_id;
+		this.ultimoUsuario = ultimoUsuario;
 	}
 	
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
 	public int getIglesia_id() {
 		return iglesia_id;
 	}
@@ -122,7 +132,7 @@ public class Cierre implements Serializable{
 	@Override
 	public String toString() {
 		return "Cierre [id=" + id + ", descripcion=" + descripcion + ", total=" + total + ", fecha=" + fecha
-				+ ", fechaEjecucion=" + fechaEjecucion + ", iglesia_id=" + iglesia_id+ "]";
+				+ ", fechaEjecucion=" + fechaEjecucion + ", iglesia_id=" + iglesia_id+ ", ultimoUsuario="+ultimoUsuario+"]";
 	}
 
 	

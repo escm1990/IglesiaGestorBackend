@@ -35,16 +35,27 @@ public class TipoRegistroMovimiento implements Serializable{
 	@Column(name = "iglesia_id")
     private int iglesia_id;
 	
+	private String ultimoUsuario;
+	
 	public TipoRegistroMovimiento() {
 		super();
 	}
 
-	public TipoRegistroMovimiento(String descripcion, String tipoContabilizacion, String estado, int iglesia_id) {
+	public TipoRegistroMovimiento(String descripcion, String tipoContabilizacion, String estado, int iglesia_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.tipoContabilizacion = tipoContabilizacion;
 		this.estado = estado;
 		this.iglesia_id = iglesia_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+	
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 	
 	public Iglesia getIglesia() {
@@ -98,7 +109,7 @@ public class TipoRegistroMovimiento implements Serializable{
 	@Override
 	public String toString() {
 		return "TipoRegistroMovimiento [id=" + id + ", descripcion=" + descripcion + ", tipoContabilizacion="
-				+ tipoContabilizacion + ", estado=" + estado + ", iglesia_id=" + iglesia_id+"]";
+				+ tipoContabilizacion + ", estado=" + estado + ", iglesia_id=" + iglesia_id+ ", ultimoUsuario=" + ultimoUsuario + "]";
 	}
 	
 }

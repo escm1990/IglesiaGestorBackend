@@ -27,6 +27,14 @@ update iglesia set nombre = 'XYZ' where nombre = 'Prueba7777'
 
 select * from auditoria a; 
 
+select * from tipo_persona te 
+
+insert into tipo_persona(descripcion,estado,iglesia_id,ultimo_usuario) values ('TipoPersona1','ACTIVO',2,'root');
+insert into tipo_persona(descripcion,estado,iglesia_id,ultimo_usuario) values ('TipoPersona2','ACTIVO',2,'root');
+insert into tipo_persona(descripcion,estado,iglesia_id,ultimo_usuario) values ('TipoPersona3','ACTIVO',4,'root');
+insert into tipo_persona(descripcion,estado,iglesia_id,ultimo_usuario) values ('TipoPersona4','ACTIVO',2,'root');
+
+
 select * from errores e; 
 
 select * from tipo_evento te 

@@ -33,15 +33,26 @@ public class TipoPersona implements Serializable{
 	@Column(name = "iglesia_id")
     private int iglesia_id;
 	
+	private String ultimoUsuario;
+	
 	public TipoPersona() {
 		super();
 	}
 
-	public TipoPersona(String descripcion, String estado, int iglesia_id) {
+	public TipoPersona(String descripcion, String estado, int iglesia_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.estado = estado;
 		this.iglesia_id = iglesia_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public Iglesia getIglesia() {
@@ -86,7 +97,7 @@ public class TipoPersona implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TipoPersona [id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + "]";
+		return "TipoPersona [id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + ", ultimoUsuario=" + ultimoUsuario + "]";
 	}
 	
 }

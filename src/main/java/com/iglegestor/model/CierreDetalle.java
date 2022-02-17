@@ -32,16 +32,27 @@ public class CierreDetalle implements Serializable{
 	
 	@Column(name = "cierre_id")
     private int cierre_id;
+	
+	private String ultimoUsuario;
 
 	public CierreDetalle() {
 		super();
 	}
 
-	public CierreDetalle(String descripcion, double monto, int cierre_id) {
+	public CierreDetalle(String descripcion, double monto, int cierre_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.monto = monto;
 		this.cierre_id = cierre_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public int getCierre_id() {
@@ -87,7 +98,7 @@ public class CierreDetalle implements Serializable{
 	@Override
 	public String toString() {
 		return "CierreDetalle [id=" + id + ", descripcion=" + descripcion + ", monto=" + monto + ", cierre_id="
-				+ cierre_id + "]";
+				+ cierre_id +  ", ultimoUsuario="+ultimoUsuario+ "]";
 	}
 	
 	

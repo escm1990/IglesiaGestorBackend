@@ -49,12 +49,15 @@ public class MovimientoDetalle implements Serializable{
 	
     @Column(name = "tipo_registro_id")
     private int tipo_registro_id;;
+	
+    private String ultimoUsuario;
 
 	public MovimientoDetalle() {
 		super();
 	}
 
-	public MovimientoDetalle(String estado, String comentario, double monto, int movimiento_id, int miembro_id, int tipo_registro_id) {
+	public MovimientoDetalle(String estado, String comentario, double monto, int movimiento_id, 
+							int miembro_id, int tipo_registro_id, String ultimoUsuario) {
 		super();
 		this.estado = estado;
 		this.comentario = comentario;
@@ -62,6 +65,15 @@ public class MovimientoDetalle implements Serializable{
 		this.movimiento_id = movimiento_id;
 		this.miembro_id = miembro_id;
 		this.tipo_registro_id = tipo_registro_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public int getMovimiento_id() {
@@ -148,7 +160,7 @@ public class MovimientoDetalle implements Serializable{
 	public String toString() {
 		return "MovimientoDetalle [id=" + id + ", estado=" + estado + ", comentario=" + comentario + ", monto=" + monto
 				+ ", movimiento_id=" + movimiento_id + ", miembro_id=" + miembro_id + ", tipo_registro_id=" + tipo_registro_id
-				+ "]";
+				+ ", ultimoUsuario=" + ultimoUsuario + "]";
 	}
 
 }

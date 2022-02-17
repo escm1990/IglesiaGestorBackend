@@ -39,15 +39,26 @@ public class EventoDetalle implements Serializable{
 	@Column(name = "evento_id")
     private int evento_id;
 
+	private String ultimoUsuario;
+	
 	public EventoDetalle() {
 		super();
 	}
 
-	public EventoDetalle(String comentario, int miembro_id, int evento_id) {
+	public EventoDetalle(String comentario, int miembro_id, int evento_id, String ultimoUsuario) {
 		super();
 		this.comentario = comentario;
 		this.miembro_id = miembro_id;
 		this.evento_id = evento_id;
+		this.ultimoUsuario = ultimoUsuario;
+	}
+
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public int getMiembro_id() {
@@ -109,7 +120,7 @@ public class EventoDetalle implements Serializable{
 	@Override
 	public String toString() {
 		return "EventoDetalle [id=" + id + ", comentario=" + comentario + ", miembro_id=" + miembro_id+ ", evento_id="
-				+ evento_id + "]";
+				+ evento_id +  ", ultimoUsuario="+ultimoUsuario+"]";
 	}
 	
 }

@@ -98,7 +98,7 @@ public class TipoEvento implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TipoEvento [id=" + id + ", descripcion=" + descripcion + ", estado=" + estado + "]";
+		return "TipoEvento [id=" + id + ", descripcion=" + descripcion + ", estado=" + estado +  ", ultimoUsuario=" + ultimoUsuario + "]";
 	}
 
 }

@@ -49,16 +49,19 @@ public class Movimiento implements Serializable{
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "movimiento_id")
     private List<MovimientoDetalle> detalleMovimiento;
 	
+	private String ultimoUsuario;
+	
 	public Movimiento() {
 		super();
 	}
 
-	public Movimiento(String descripcion, Long fecha, int iglesia_id, int cierre_id) {
+	public Movimiento(String descripcion, Long fecha, int iglesia_id, int cierre_id, String ultimoUsuario) {
 		super();
 		this.descripcion = descripcion;
 		this.fecha = fecha;
 		this.iglesia_id = iglesia_id;
 		this.cierre_id = cierre_id;
+		this.ultimoUsuario = ultimoUsuario;
 	}
 
 	public int getIglesia_id() {
@@ -128,7 +131,7 @@ public class Movimiento implements Serializable{
 	@Override
 	public String toString() {
 		return "Movimiento [id=" + id + ", descripcion=" + descripcion + ", fecha=" + fecha + ", iglesia_id=" + iglesia_id
-				+ ", cierre_id=" + cierre_id + "]";
+				+ ", cierre_id=" + cierre_id + ", ultimoUsuario=" + ultimoUsuario + "]";
 	}
 	
 	

@@ -56,6 +56,7 @@ public class IglesiaRestController {
 		return repo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/detalle/{id}")
     public ResponseEntity<Iglesia> getUserByID(@PathVariable int id) throws NotFoundException {
         //Es un Optional<T>
@@ -66,7 +67,7 @@ public class IglesiaRestController {
         }
         //Si no, lanzamos un error
         else{
-            throw new NotFoundException("Not found Iglesia by id: " + id);
+            throw new NotFoundException("No se encontró la iglesia con id: " + id);
         }
    }
 
