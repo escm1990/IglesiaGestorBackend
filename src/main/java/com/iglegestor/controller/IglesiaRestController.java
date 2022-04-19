@@ -38,101 +38,156 @@ public class IglesiaRestController {
 
 	@Autowired
 	private IglesiaDao repo;
-	
+
 	@Autowired
 	private AuditoriaDao audit;
-	
+
 	Auditoria au;
-	
+
 	@Autowired
 	private ErroresDao err;
-	
-	Errores er;
-	
-	private Utilidades utils;
 
+	Errores er;
+
+	/**
+	 * Retorna un listado de Iglesias
+	 * 
+	 * @return List<Iglesia>
+	 */
 	@GetMapping(value = "/listar")
-	public List<Iglesia> listar(){
+	public List<Iglesia> listar() {
 		return repo.findAll(Sort.by(Sort.Direction.ASC, "id"));
 	}
-	
+
+	/**
+	 * Método que retorna el detalle de una iglesia
+	 * 
+	 * @param id -> Código del Iglesia
+	 * @return ResponseEntity<TipoEvento>
+	 * @throws NotFoundException
+	 * @throws ParseException
+	 */
 	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/detalle/{id}")
-    public ResponseEntity<Iglesia> getUserByID(@PathVariable int id) throws NotFoundException {
-        //Es un Optional<T>
-        Optional<Iglesia> u = repo.findById(id);
-        //Si está presente lo devolvemos
-        if(u.isPresent()){
-            return ResponseEntity.ok(u.get());
-        }
-        //Si no, lanzamos un error
-        else{
-            throw new NotFoundException("No se encontró la iglesia con id: " + id);
-        }
-   }
+	public ResponseEntity<Iglesia> getUserByID(@PathVariable int id) throws NotFoundException, ParseException {
+		Long fechaRegistro = Utilidades.fechaMilisegundos(new Date());
+		// Es un Optional<T>
+		Optional<Iglesia> u = repo.findById(id);
+		// Si está presente lo devolvemos
+		if (u.isPresent()) {
+			return ResponseEntity.ok(u.get());
+		}
+		// Si no, lanzamos un error
+		else {
+			er = new Errores(Iglesia.class.toString(), "detalle",
+					new NotFoundException("No se encontró Iglesia con el id: " + id).toString(), "", fechaRegistro, 0);
+			err.save(er);
+			throw new NotFoundException("No se encontró la iglesia con id: " + id);
+		}
+	}
 
+	/**
+	 * Método que guarda un Iglesia
+	 * 
+	 * @param te - Iglesia a persistir
+	 * @return ResponseEntity<?>
+	 * @throws ParseException
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/guardar", method = RequestMethod.POST)
-	public void insertar(@RequestBody Iglesia igle) throws ParseException {
-		Long fechaRegistro = utils.fechaMilisegundos(new Date());
+	public ResponseEntity<?> insertar(@RequestBody Iglesia igle) throws ParseException {
+		Long fechaRegistro = Utilidades.fechaMilisegundos(new Date());
 		try {
 			repo.save(igle);
-			au = new Auditoria(Tablas.IGLESIA.toString(), Accion.INSERTAR.toString(), igle.getUltimoUsuario(), fechaRegistro, igle.toString(), igle.getId());
+			au = new Auditoria(Tablas.IGLESIA.toString(), Accion.INSERTAR.toString(), igle.getUltimoUsuario(),
+					fechaRegistro, igle.toString(), igle.getId());
 			audit.save(au);
-		} 
-		catch(Exception ex) {
-			er = new Errores(Iglesia.class.toString(), "insertar", ex.getStackTrace().toString(), igle.getUltimoUsuario(), fechaRegistro , igle.getId());
+
+			return new ResponseEntity(new Mensaje("Iglesia insertada"), HttpStatus.OK);
+
+		} catch (Exception ex) {
+			er = new Errores(Iglesia.class.toString(), "insertar", ex.getStackTrace().toString(),
+					igle.getUltimoUsuario(), fechaRegistro, igle.getId());
+			err.save(er);
+			return new ResponseEntity(new Mensaje("Iglesia no se pudo insertar"), HttpStatus.BAD_REQUEST);
 		}
-		
+
 	}
-	
+
+	/**
+	 * Método para modificar un Iglesia
+	 * 
+	 * @param id - Identificador del Iglesia a actualizar
+	 * @param te - Objeto Iglesia a persistir
+	 * @return ResponseEntity<?>
+	 * @throws ParseException
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@PreAuthorize("hasRole('ADMIN')")
 	@RequestMapping(value = "/modificar/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<?> modificar(@PathVariable("id")int id, @RequestBody Iglesia igle) throws ParseException {
-		Long fechaRegistro = utils.fechaMilisegundos(new Date());
-		//En primer lugar, buscamos el Usuario
-        Optional<Iglesia> encontrada = repo.findById(id);
-        //Si está presente lo devolvemos
-        if(encontrada.isPresent()){
-            //Usuario encontrado para realizar update sobre él.
-            Iglesia iglesiaActualizar = encontrada.get();         
-            //Copiamos los nuevos datos al usuario
-            iglesiaActualizar.setNombre(igle.getNombre());  
-            iglesiaActualizar.setDireccion(igle.getDireccion());
-            iglesiaActualizar.setCorreo(igle.getCorreo()); 
-            iglesiaActualizar.setFechaFundacion(igle.getFechaFundacion()); 
-            iglesiaActualizar.setEstado(igle.getEstado()); 
-            iglesiaActualizar.setLogo(igle.getLogo()); 
-            iglesiaActualizar.setPais(igle.getPais()); 
-            iglesiaActualizar.setTelefono(igle.getTelefono());
-            iglesiaActualizar.setUltimoUsuario(igle.getUltimoUsuario());
-            //Guadramos en la DB
-            Iglesia iglesiaModificada = repo.save(iglesiaActualizar);            
-            
-            au = new Auditoria(Tablas.IGLESIA.toString(), Accion.MODIFICAR.toString(), iglesiaModificada.getUltimoUsuario(), utils.fechaMilisegundos(new Date()) , iglesiaModificada.toString(), iglesiaModificada.getId());
-    		audit.save(au);
-    		
-            return new ResponseEntity(new Mensaje("Iglesia modificada"), HttpStatus.OK);
-        }
-        else {
-        	er = new Errores(Iglesia.class.toString(), "modificar", HttpStatus.BAD_REQUEST.toString(), igle.getUltimoUsuario(), fechaRegistro , igle.getId());
-            return new ResponseEntity(new Mensaje("Iglesia no se pudo actualizar"), HttpStatus.BAD_REQUEST);
-        }
-	}
-	
-	@PreAuthorize("hasRole('ADMIN')")
-	@RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
-	public void eliminar(@PathVariable("id") Integer id) throws ParseException {
-		
-		Long fechaRegistro = utils.fechaMilisegundos(new Date());
-        Optional<Iglesia> i = repo.findById(id);
-		try {
-        au = new Auditoria(Tablas.IGLESIA.toString(), Accion.ELIMINAR.toString(), i.get().getUltimoUsuario(), utils.fechaMilisegundos(new Date()) ,  i.get().toString(),  i.get().getId());
-		audit.save(au);
-		repo.deleteById(id);
-		} catch( Exception ex) {
-			er = new Errores(Iglesia.class.toString(), "eliminar", HttpStatus.BAD_REQUEST.toString(), i.get().getUltimoUsuario(), fechaRegistro , i.get().getId());
+	public ResponseEntity<?> modificar(@PathVariable("id") int id, @RequestBody Iglesia igle) throws ParseException {
+		Long fechaRegistro = Utilidades.fechaMilisegundos(new Date());
+		// En primer lugar, buscamos el Usuario
+		Optional<Iglesia> encontrada = repo.findById(id);
+		// Si está presente lo devolvemos
+		if (encontrada.isPresent()) {
+			// Usuario encontrado para realizar update sobre él.
+			Iglesia iglesiaActualizar = encontrada.get();
+			// Copiamos los nuevos datos al usuario
+			iglesiaActualizar.setNombre(igle.getNombre());
+			iglesiaActualizar.setDireccion(igle.getDireccion());
+			iglesiaActualizar.setCorreo(igle.getCorreo());
+			iglesiaActualizar.setFechaFundacion(igle.getFechaFundacion());
+			iglesiaActualizar.setEstado(igle.getEstado());
+			iglesiaActualizar.setLogo(igle.getLogo());
+			iglesiaActualizar.setPais(igle.getPais());
+			iglesiaActualizar.setTelefono(igle.getTelefono());
+			iglesiaActualizar.setUltimoUsuario(igle.getUltimoUsuario());
+			// Guadramos en la DB
+			Iglesia iglesiaModificada = repo.save(iglesiaActualizar);
+
+			au = new Auditoria(Tablas.IGLESIA.toString(), Accion.MODIFICAR.toString(),
+					iglesiaModificada.getUltimoUsuario(), Utilidades.fechaMilisegundos(new Date()),
+					iglesiaModificada.toString(), iglesiaModificada.getId());
+			audit.save(au);
+
+			return new ResponseEntity(new Mensaje("Iglesia modificada"), HttpStatus.OK);
+		} else {
+			er = new Errores(Iglesia.class.toString(), "modificar", HttpStatus.BAD_REQUEST.toString(),
+					igle.getUltimoUsuario(), fechaRegistro, igle.getId());
+			err.save(er);
+			return new ResponseEntity(new Mensaje("Iglesia no se pudo actualizar"), HttpStatus.BAD_REQUEST);
 		}
 	}
-	
+
+	/**
+	 * Método para eliminar un Tipo de Evento
+	 * 
+	 * @param id - Identificador del Tipo de Evento a eliminar
+	 * @return ResponseEntity<?>
+	 * @throws ParseException
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(value = "/eliminar/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> eliminar(@PathVariable("id") Integer id) throws ParseException {
+
+		Long fechaRegistro = Utilidades.fechaMilisegundos(new Date());
+		Optional<Iglesia> i = repo.findById(id);
+		try {
+			au = new Auditoria(Tablas.IGLESIA.toString(), Accion.ELIMINAR.toString(), i.get().getUltimoUsuario(),
+					Utilidades.fechaMilisegundos(new Date()), i.get().toString(), i.get().getId());
+			audit.save(au);
+			repo.deleteById(id);
+			return new ResponseEntity(new Mensaje("Iglesia eliminada"), HttpStatus.OK);
+
+		} catch (Exception ex) {
+			er = new Errores(Iglesia.class.toString(), "eliminar", HttpStatus.BAD_REQUEST.toString(),
+					i.get().getUltimoUsuario(), fechaRegistro, i.get().getId());
+			err.save(er);
+			return new ResponseEntity(new Mensaje("Iglesia no se pudo eliminar"), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 }

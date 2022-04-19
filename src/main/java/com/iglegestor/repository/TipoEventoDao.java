@@ -9,7 +9,5 @@ import com.iglegestor.model.TipoEvento;
 
 public interface TipoEventoDao extends JpaRepository<TipoEvento, Integer>{
 
-	//Listar registros de Miembro por filtro por iglesia
-	@Query("SELECT a FROM TipoEvento a WHERE a.iglesia.id = ?1")
-	List<TipoEvento> obtenerRegistrosPorIglesia(int id_iglesia);
+
 }

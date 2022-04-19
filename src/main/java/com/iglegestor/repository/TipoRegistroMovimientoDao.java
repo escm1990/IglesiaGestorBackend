@@ -9,7 +9,5 @@ import com.iglegestor.model.TipoRegistroMovimiento;
 
 public interface TipoRegistroMovimientoDao extends JpaRepository<TipoRegistroMovimiento, Integer>{
 
-	//Listar registros de TipoRegistroMovimiento por filtro por iglesia
-	@Query("SELECT a FROM TipoRegistroMovimiento a WHERE a.iglesia.id = ?1")
-	List<TipoRegistroMovimiento> obtenerRegistrosPorIglesia(int id_iglesia);
+
 }

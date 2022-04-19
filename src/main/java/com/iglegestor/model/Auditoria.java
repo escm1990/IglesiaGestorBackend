@@ -4,14 +4,9 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Auditoria implements Serializable{
@@ -28,6 +23,8 @@ public class Auditoria implements Serializable{
 	private String accion;
 	private String usuario;
 	private Long fecha;
+	
+	@Column(length = 4000)
 	private String registro;
 	
 	public Auditoria() {

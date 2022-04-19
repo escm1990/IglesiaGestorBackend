@@ -2,16 +2,10 @@ package com.iglegestor.model;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Errores implements Serializable{
@@ -58,14 +52,6 @@ public class Errores implements Serializable{
 		this.iglesia_id = iglesia_id;
 	}
 
-	/*public Iglesia getIglesia() {
-		return iglesia;
-	}
-
-	public void setIglesia(Iglesia iglesia) {
-		this.iglesia = iglesia;
-	}
-*/
 	public int getId() {
 		return id;
 	}

@@ -127,6 +127,14 @@ public class Movimiento implements Serializable{
 	public void setCierre(Cierre cierre) {
 		this.cierre = cierre;
 	}
+	
+	public String getUltimoUsuario() {
+		return ultimoUsuario;
+	}
+
+	public void setUltimoUsuario(String ultimoUsuario) {
+		this.ultimoUsuario = ultimoUsuario;
+	}
 
 	@Override
 	public String toString() {

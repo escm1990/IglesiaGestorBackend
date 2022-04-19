@@ -167,14 +167,6 @@ public class Miembro implements Serializable{
 		this.correo = correo;
 	}
 
-	public Long getfechaConversion() {
-		return fechaConversion;
-	}
-
-	public void setfechaConversion(Long fechaConversion) {
-		this.fechaConversion = fechaConversion;
-	}
-
 	public Long getFechaBautismo() {
 		return fechaBautismo;
 	}
