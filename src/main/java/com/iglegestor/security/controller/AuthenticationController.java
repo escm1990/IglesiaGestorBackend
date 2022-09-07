@@ -68,7 +68,7 @@ public class AuthenticationController {
 			return new ResponseEntity(new Mensaje("Correo ya existe"),HttpStatus.BAD_REQUEST);
 		}
 		
-		Usuarios usuario = new Usuarios(nu.getUsuario(), pe.encode(nu.getPassword()), nu.getCorreo(), nu.getEstado(), Utilidades.fechaMilisegundos(new Date()),new Integer(0));
+		Usuarios usuario = new Usuarios(nu.getUsuario(), pe.encode(nu.getPassword()), nu.getCorreo(), nu.getEstado(), Utilidades.fechaMilisegundos(new Date()), nu.getId_iglesia());
 		Set<Rol> roles = new HashSet<>();
 		roles.add(rs.getByNombre(com.iglegestor.enums.Roles.ROLE_USER).get());
 		

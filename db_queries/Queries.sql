@@ -109,4 +109,5 @@ select * from errores e
 
 select * from auditoria a 
 
+select * from miembro m 
 

@@ -62,6 +62,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter{
 		http.cors().and().csrf().disable()
 			.authorizeRequests()
 			.antMatchers("/auth/**").permitAll()
+            .antMatchers("/api/iglesia/listar").permitAll() //para permitir consultar específicamente las iglesias sin necesidad de token
 			.anyRequest().authenticated()
 			.and()
 			.exceptionHandling().authenticationEntryPoint(jwtEP)

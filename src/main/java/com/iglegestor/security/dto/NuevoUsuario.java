@@ -17,6 +17,9 @@ public class NuevoUsuario {
 	@NotBlank
 	private String password;
 	
+	@NotBlank
+	private int id_iglesia;
+	
 	@Email
 	private String correo;
 	
@@ -64,6 +67,13 @@ public class NuevoUsuario {
 	public void setRoles(Set<String> roles) {
 		this.roles = roles;
 	}
+
+	public int getId_iglesia() {
+		return id_iglesia;
+	}
+
+	public void setId_iglesia(int id_iglesia) {
+		this.id_iglesia = id_iglesia;
+	}
     
-	
 }
