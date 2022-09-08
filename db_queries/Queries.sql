@@ -111,3 +111,4 @@ select * from auditoria a
 
 select * from miembro m 
 
+select * from usuarios u where u.usuario  = 'erick'
