@@ -23,6 +23,7 @@ import com.iglegestor.enums.Tablas;
 import com.iglegestor.model.Auditoria;
 import com.iglegestor.model.Errores;
 import com.iglegestor.model.EventoDetalle;
+import com.iglegestor.model.EventoDetalleArray;
 import com.iglegestor.repository.AuditoriaDao;
 import com.iglegestor.repository.ErroresDao;
 import com.iglegestor.repository.EventoDetalleDao;
@@ -183,5 +184,38 @@ public class EventoDetalleRestController {
 	public List<EventoDetalle> listarPorEvento(@PathVariable("id_evento") int id_evento){
 		return repo.obtenerRegistrosPorIdEvento(id_evento);
 	}
+	
+	/**
+	 * Método que guarda un Evento Detalle
+	 * @param te - Evento Detalle a persistir
+	 * @return ResponseEntity<?>
+	 * @throws ParseException
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@PreAuthorize("hasRole('ADMIN')")
+	@RequestMapping(value = "/guardar/excel", method = RequestMethod.POST)
+	public ResponseEntity<?> insertarCargaExcel(@RequestBody EventoDetalleArray eda) throws ParseException {
+		Long fechaRegistro = Utilidades.fechaMilisegundos(new Date());
+		try {
+			
+			List registros = eda.getDetalles();
+			for(int i=0;i<registros.size();i++) {
+				System.out.println(registros.get(i));
+				repo.save((EventoDetalle) registros.get(i));
+			}
+			
+			au = new Auditoria(Tablas.EVENTO_DETALLE.toString(), Accion.INSERTAR.toString(), "-",
+					fechaRegistro, eda.toString(), 0);
+			audit.save(au);
+
+			return new ResponseEntity(new Mensaje("EventoDetalle desde Excel insertado"), HttpStatus.OK);
+		} catch (Exception ex) {
+			er = new Errores(EventoDetalle.class.toString(), "insertar", ex.getStackTrace().toString(),
+					"-", fechaRegistro, 0);
+			err.save(er);
+			return new ResponseEntity(new Mensaje("EventoDetalle desde Excel no se pudo insertar"), HttpStatus.BAD_REQUEST);
+		}
+	}
+
 	
 }

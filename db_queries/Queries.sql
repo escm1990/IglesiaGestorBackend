@@ -112,3 +112,59 @@ select * from auditoria a
 select * from miembro m 
 
 select * from usuarios u where u.usuario  = 'erick'
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(3, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(4, 'Apellido4', 'mail4@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 4', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(5, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(6, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(7, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(8, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(9, 'Apellido9', 'mail9@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 9', 'FEMENINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(10, 'Apellido10', 'mail10@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 10', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+commit;
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(11, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(12, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(13, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(14, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+INSERT INTO public.miembro
+(id, apellido, correo, direccion, estado, estado_civil, fecha_bautismo, fecha_conversion, fecha_nacimiento, foto, iglesia_id, nombre, sexo, telefono_fijo, telefono_movil, tipo_persona_id, ultimo_usuario)
+VALUES(15, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
+
+commit;
