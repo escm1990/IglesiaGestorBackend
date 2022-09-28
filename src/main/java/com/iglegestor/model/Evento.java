@@ -111,14 +111,6 @@ public class Evento implements Serializable{
 		this.descripcion = descripcion;
 	}
 
-	public Long getFechaEvento() {
-		return fecha;
-	}
-
-	public void setFechaEvento(Long fecha) {
-		this.fecha = fecha;
-	}
-
 	public Iglesia getIglesia() {
 		return iglesia;
 	}

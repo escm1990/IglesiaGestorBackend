@@ -131,6 +131,7 @@ public class MovimientoRestController {
 			// Copiamos los nuevos datos al usuario
 			MovimientoActualizar.setCierre_id(te.getCierre_id());
 			MovimientoActualizar.setDescripcion(te.getDescripcion());
+			MovimientoActualizar.setFecha(te.getFecha());
 			MovimientoActualizar.setIglesia_id(te.getIglesia_id());
 			MovimientoActualizar.setUltimoUsuario(te.getUltimoUsuario());
 			// Guadramos en la DB

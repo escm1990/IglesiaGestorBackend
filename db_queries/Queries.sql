@@ -168,3 +168,7 @@ INSERT INTO public.miembro
 VALUES(15, 'Apellido3', 'mail3@correo.com', 'no tiene', 'ACTIVO', NULL, 1600581600000, 1477375200000, 1295848800000, 'fotomiembro.png', 1, 'Miembro 3', 'MASCULINO', '85858585', '24475892', 4, 'root');
 
 commit;
+
+INSERT INTO public.cierre
+(descripcion, fecha, fecha_ejecucion, iglesia_id, total, ultimo_usuario)
+VALUES('CIERRE_ADM_NO_CTA', 0, 0, 1, 0, 'DBA');
