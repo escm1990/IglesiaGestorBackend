@@ -172,3 +172,10 @@ commit;
 INSERT INTO public.cierre
 (descripcion, fecha, fecha_ejecucion, iglesia_id, total, ultimo_usuario)
 VALUES('CIERRE_ADM_NO_CTA', 0, 0, 1, 0, 'DBA');
+
+
+select * from movimiento m;
+
+select * from evento e order by 1;
+
+select * from movimiento_detalle md ;
